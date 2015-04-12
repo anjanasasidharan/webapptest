@@ -2,8 +2,11 @@ package com.proquest.interview.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import com.proquest.interview.exception.DataAccessException;
 
 /**
  * This class is just a utility class, you should not have to change anything here
@@ -24,8 +27,39 @@ public class DatabaseUtil {
 		}
 		
 	}
+	
+	public static void cleanDB() {
+		try {
+			Connection cn = getConnection();
+			Statement stmt = cn.createStatement();
+			stmt.execute("DROP TABLE PHONEBOOK");
+			cn.commit();
+			cn.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+	}
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("org.hsqldb.jdbcDriver");
 		return DriverManager.getConnection("jdbc:hsqldb:mem", "sa", "");
+	}
+	
+	public static Connection getPooledConnection() throws DataAccessException {
+		return DatabaseConnectionPool.getDatabaseConnectionPool().getConnection();
+	}
+	
+	public static void releaseConnection(Connection connection, Statement statement, ResultSet resultSet) throws DataAccessException {
+		try {
+			if(resultSet != null) {
+				resultSet.close();
+			}
+			if(statement != null) {
+				statement.close();
+			}
+			DatabaseConnectionPool.getDatabaseConnectionPool().returnConnection(connection);
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		}
 	}
 }
