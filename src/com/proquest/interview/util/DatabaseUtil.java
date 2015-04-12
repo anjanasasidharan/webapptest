@@ -25,9 +25,9 @@ public class DatabaseUtil {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public static void cleanDB() {
 		try {
 			Connection cn = getConnection();
@@ -38,17 +38,17 @@ public class DatabaseUtil {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 	}
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("org.hsqldb.jdbcDriver");
 		return DriverManager.getConnection("jdbc:hsqldb:mem", "sa", "");
 	}
-	
+
 	public static Connection getPooledConnection() throws DataAccessException {
 		return DatabaseConnectionPool.getDatabaseConnectionPool().getConnection();
 	}
-	
+
 	public static void releaseConnection(Connection connection, Statement statement, ResultSet resultSet) throws DataAccessException {
 		try {
 			if(resultSet != null) {

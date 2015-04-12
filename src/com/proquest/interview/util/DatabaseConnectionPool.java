@@ -37,7 +37,7 @@ public class DatabaseConnectionPool {
 	private DatabaseConnectionPool(int size) throws DataAccessException {
 		poolSize = size;
 		connections = new ArrayList<>(size);
-	    initConnections();
+		initConnections();
 	}
 
 	public static void initConnectionPool(int size) throws DataAccessException {
@@ -96,7 +96,7 @@ public class DatabaseConnectionPool {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get number of connections available in the pool
 	 * @return
@@ -107,7 +107,7 @@ public class DatabaseConnectionPool {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Shutdown and release connection from the connection pool
 	 * @throws DataAccessException

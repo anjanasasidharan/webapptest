@@ -18,5 +18,5 @@ public interface PhoneBookDAO<K,V> {
 	public void delete(K key) throws DataAccessException;
 	public V get(K key) throws DataAccessException;
 	public Map<K,V> load() throws DataAccessException;
-	
+
 }

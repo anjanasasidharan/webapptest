@@ -15,14 +15,14 @@ public interface PhoneBook {
 	 * @throws PhoneBookAccessException
 	 */
 	public Person findPerson(String firstName, String lastName) throws PhoneBookAccessException;
-	
+
 	/**
 	 * Method to add a person to phone book
 	 * @param newPerson
 	 * @throws PhoneBookAccessException
 	 */
 	public void addPerson(Person newPerson) throws PhoneBookAccessException;
-	
+
 	/**
 	 * Method to print the phone book
 	 */

@@ -24,7 +24,7 @@ public class PersonDAOImplTest extends TestCase{
 		DatabaseUtil.initDB();
 		DatabaseConnectionPool.initConnectionPool(1);
 	}
-	
+
 	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();

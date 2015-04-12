@@ -23,7 +23,7 @@ public class PhoneBookDAOFactoryTest extends TestCase{
 		PhoneBookDAO dao = factory.getPhoneBookDAO(Person.class);
 		assertTrue(dao instanceof PersonDAOImpl);
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	@Test
 	public void testGetDAOFail() {

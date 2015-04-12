@@ -15,7 +15,7 @@ public class Person {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -58,7 +58,7 @@ public class Person {
 				+ ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

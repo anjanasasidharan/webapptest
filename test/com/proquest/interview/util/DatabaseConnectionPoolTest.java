@@ -14,7 +14,7 @@ import com.proquest.interview.exception.DataAccessException;
  *
  */
 public class DatabaseConnectionPoolTest extends TestCase {
-	
+
 	@Test
 	public void testUnInitializedPool() {
 		try {
@@ -26,7 +26,7 @@ public class DatabaseConnectionPoolTest extends TestCase {
 			fail();
 		}
 	}
-	
+
 	public void testGetConnection() {
 		try {
 			DatabaseConnectionPool.initConnectionPool(1);
@@ -38,7 +38,7 @@ public class DatabaseConnectionPoolTest extends TestCase {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void testReleaseConnection() {
 		try {
 			DatabaseConnectionPool.initConnectionPool(1);

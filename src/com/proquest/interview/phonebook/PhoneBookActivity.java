@@ -20,7 +20,7 @@ import com.proquest.interview.util.DatabaseUtil;
  */
 public class PhoneBookActivity {
 	PhoneBook phoneBook;
-	
+
 	/**
 	 * Initializing phone book application
 	 * 1) Initialize in-memory Database
@@ -34,7 +34,7 @@ public class PhoneBookActivity {
 		DatabaseConnectionPool.initConnectionPool(1);
 		phoneBook = new PhoneBookImpl();
 	}
-	
+
 	/**
 	 * Graceful shutdown of application
 	 * 1) Clean up in-memory Database
@@ -45,7 +45,7 @@ public class PhoneBookActivity {
 		DatabaseUtil.cleanDB();
 		DatabaseConnectionPool.getDatabaseConnectionPool().shutdownPool();
 	}
-	
+
 	/**
 	 * Utility method to add people to phone book
 	 * @param name
@@ -57,7 +57,7 @@ public class PhoneBookActivity {
 		Person newPerson = new Person(name, phoneNumber, address);
 		phoneBook.addPerson(newPerson);
 	}
-	
+
 	/**
 	 * Utility method to print entire phone book
 	 */
@@ -66,7 +66,7 @@ public class PhoneBookActivity {
 		phoneBook.printPhoneBook();
 		System.out.println("******************* End of Proquest Phone Book *******************");
 	}
-	
+
 	/**
 	 * Utility method to search for a name and print the details
 	 * @param firstName
@@ -82,7 +82,7 @@ public class PhoneBookActivity {
 		System.out.println("*********************************************************");
 	}
 
-	
+
 	public static void main(String[] args) {
 		PhoneBookActivity activity = new PhoneBookActivity();
 		//Initialize application
@@ -91,32 +91,32 @@ public class PhoneBookActivity {
 		} catch (DataAccessException|PhoneBookAccessException e) {
 			System.out.println("Failed to initialize phone book."+e.getMessage());
 		} 
-		
+
 		/* create person objects and put them in the PhoneBook and database
 		 * John Smith, (248) 123-4567, 1234 Sand Hill Dr, Royal Oak, MI
 		 * Cynthia Smith, (824) 128-8758, 875 Main St, Ann Arbor, MI
-		*/ 
+		 */ 
 		try {
 			activity.createPeople("John Smith", "(248) 123-4567", "1234 Sand Hill Dr, Royal Oak, MI");
 			activity.createPeople("Cynthia Smith", "(824) 128-8758", "875 Main St, Ann Arbor, MI");
 		} catch (PhoneBookAccessException e) {
 			System.out.println("Failed to create new people "+e.getMessage());
 		}
-		
+
 		// print the phone book out to System.out
 		activity.printPhoneBook();
-		
+
 		// find Cynthia Smith and print out just her entry
 		try {
 			activity.findAndPrint("Cynthia", "Smith");
 		} catch (PhoneBookAccessException e) {
 			System.out.println("Failed to search in phone book "+e.getMessage());
 		}
-		
+
 		/* insert the new person objects into the database
 		 * Note: While adding new people to phone book, they are already added to database 
 		 */
-		
+
 		// Shutdown application
 		try {
 			activity.shutDown();
